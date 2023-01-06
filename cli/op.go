@@ -27,9 +27,11 @@ func main() {
 }
 
 func getGitCommit() string {
+	fmt.Println("Inside the getGitCommit()")
 	shaPrefix := func(sha string) string {
 		return string(([]rune(sha))[:7])
 	}
+	fmt.Println("getGitCommit() shaPrefix")
 	if gitCommit != "" {
 		gitCommit = shaPrefix(gitCommit)
 		return gitCommit
@@ -54,6 +56,7 @@ func getGitCommit() string {
 }
 
 func getBuildEpochSec() string {
+	fmt.Println("getBuildEpochSec() Function")
 	if buildEpochSec != "" {
 		fmt.Print("in git buildEpochSec", buildEpochSec)
 		return buildEpochSec

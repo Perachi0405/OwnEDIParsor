@@ -19,8 +19,8 @@ import (
 	"github.com/jf-tech/go-corelib/jsons"
 	"github.com/spf13/cobra"
 
+	"github.com/Perachi0405/ownEDIParsor/transformctx"
 	"github.com/jf-tech/omniparser"
-	"github.com/jf-tech/omniparser/transformctx"
 )
 
 //&cobra.Command is an interface
@@ -89,9 +89,7 @@ func doServer() {
 func serverCmdDir() string {
 	_, filename, _, _ := runtime.Caller(1)
 	fmt.Println("servercmdDir filename", filename)
-	log.Printf("servercmdDir filename", filename)
 	absDir, _ := filepath.Abs(filepath.Dir(filename))
-	log.Printf("servercmdDir absDir", absDir)
 	fmt.Println("servercmdDir absDir", absDir)
 	return absDir
 }
@@ -188,24 +186,30 @@ func httpGetSamples(w http.ResponseWriter, r *http.Request) {
 	samples := []sample{}
 	for _, format := range sampleFormats {
 		dir := filepath.Join(serverCmdDir(), sampleDir, format)
+		fmt.Println("Directory httpGetSamples", dir)
 		files, err := ioutil.ReadDir(dir)
+		fmt.Println("Files httpGetSamples", files)
 		if err != nil {
 			goto getSampleFailure
 		}
 		for _, f := range files {
 			submatch := sampleInputFilenamePattern.FindStringSubmatch(f.Name())
+			fmt.Println("Submatch httpGetSamples", submatch)
 			if len(submatch) < 2 {
 				continue
 			}
 			sample := sample{
 				Name: filepath.Join(format, submatch[1]),
 			}
+			fmt.Println("sample httpGetSamples", sample)
 			schema, err := ioutil.ReadFile(filepath.Join(dir, submatch[1]+".schema.json"))
+			fmt.Println("Schema httpGetsamples", schema)
 			if err != nil {
 				goto getSampleFailure
 			}
 			sample.Schema = string(schema)
 			input, err := ioutil.ReadFile(filepath.Join(dir, f.Name()))
+			fmt.Println("inputFiles httpGetsamples", input)
 			if err != nil {
 				goto getSampleFailure
 			}
