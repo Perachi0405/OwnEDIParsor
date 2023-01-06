@@ -1,2 +1,3 @@
 # OwnEDIParsor
-To parse the EDI file into JSON
+To parse the EDI file into JSON.
+
