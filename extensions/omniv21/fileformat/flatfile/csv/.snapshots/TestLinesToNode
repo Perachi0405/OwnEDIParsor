@@ -1,0 +1,81 @@
+{
+	"Children": [
+		{
+			"Children": [
+				{
+					"Children": null,
+					"Data": ":?>",
+					"FirstChild": null,
+					"FormatSpecific": null,
+					"LastChild": null,
+					"NextSibling": null,
+					"Parent": "(ElementNode c1)",
+					"PrevSibling": null,
+					"Type": "TextNode"
+				}
+			],
+			"Data": "c1",
+			"FirstChild": "(TextNode ':?>')",
+			"FormatSpecific": null,
+			"LastChild": "(TextNode ':?>')",
+			"NextSibling": "(ElementNode c2)",
+			"Parent": "(ElementNode test)",
+			"PrevSibling": null,
+			"Type": "ElementNode"
+		},
+		{
+			"Children": [
+				{
+					"Children": null,
+					"Data": "a",
+					"FirstChild": null,
+					"FormatSpecific": null,
+					"LastChild": null,
+					"NextSibling": null,
+					"Parent": "(ElementNode c2)",
+					"PrevSibling": null,
+					"Type": "TextNode"
+				}
+			],
+			"Data": "c2",
+			"FirstChild": "(TextNode 'a')",
+			"FormatSpecific": null,
+			"LastChild": "(TextNode 'a')",
+			"NextSibling": "(ElementNode c3)",
+			"Parent": "(ElementNode test)",
+			"PrevSibling": "(ElementNode c1)",
+			"Type": "ElementNode"
+		},
+		{
+			"Children": [
+				{
+					"Children": null,
+					"Data": "2",
+					"FirstChild": null,
+					"FormatSpecific": null,
+					"LastChild": null,
+					"NextSibling": null,
+					"Parent": "(ElementNode c3)",
+					"PrevSibling": null,
+					"Type": "TextNode"
+				}
+			],
+			"Data": "c3",
+			"FirstChild": "(TextNode '2')",
+			"FormatSpecific": null,
+			"LastChild": "(TextNode '2')",
+			"NextSibling": null,
+			"Parent": "(ElementNode test)",
+			"PrevSibling": "(ElementNode c2)",
+			"Type": "ElementNode"
+		}
+	],
+	"Data": "test",
+	"FirstChild": "(ElementNode c1)",
+	"FormatSpecific": null,
+	"LastChild": "(ElementNode c3)",
+	"NextSibling": null,
+	"Parent": null,
+	"PrevSibling": null,
+	"Type": "ElementNode"
+}

@@ -24,6 +24,7 @@ require (
 )
 
 require (
+	github.com/bradleyjkemp/cupaloy v2.3.0+incompatible
 	github.com/go-chi/chi v4.1.2+incompatible
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/jf-tech/go-corelib v0.0.18
