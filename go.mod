@@ -5,12 +5,12 @@ go 1.18
 require github.com/spf13/cobra v1.6.1
 
 require (
-	github.com/antchfx/xpath v1.1.11 // indirect
+	github.com/antchfx/xpath v1.1.11
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dlclark/regexp2 v1.2.1 // indirect
-	github.com/dop251/goja v0.0.0-20201002140143-8ce18d86df5f // indirect
+	github.com/dop251/goja v0.0.0-20201002140143-8ce18d86df5f
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
-	github.com/google/uuid v1.1.2 // indirect
+	github.com/google/uuid v1.1.2
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/objx v0.1.1 // indirect
