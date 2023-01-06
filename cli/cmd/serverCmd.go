@@ -17,9 +17,10 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/jf-tech/go-corelib/jsons"
+	"github.com/jf-tech/omniparser/transformctx"
 	"github.com/spf13/cobra"
 
-	"github.com/Perachi0405/ownEDIParsor/transformctx"
+	// "github.com/Perachi0405/ownEDIParsor/transformctx"
 	"github.com/jf-tech/omniparser"
 )
 
