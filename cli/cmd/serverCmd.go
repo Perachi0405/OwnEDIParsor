@@ -82,7 +82,7 @@ func doServer() {
 func serverCmdDir() string {
 	_, filename, _, _ := runtime.Caller(1)
 	absDir, _ := filepath.Abs(filepath.Dir(filename))
-	// fmt.Println("absDir", absDir)
+	fmt.Println("absDir", absDir)
 	return absDir
 }
 
@@ -167,8 +167,8 @@ func httpPostTransform(w http.ResponseWriter, r *http.Request) {
 }
 
 var (
-	sampleDir                  = "../../extensions/omniv21/samples/"
-	sampleFormats              = []string{"csv2", "json", "xml", "fixedlength2", "edi"}
+	sampleDir                  = "../../extensions/v21/samples/"
+	sampleFormats              = []string{"edi"}
 	sampleInputFilenamePattern = regexp.MustCompile("^([0-9]+[_a-zA-Z0-9]+)\\.input\\.[a-z]+$")
 )
 
@@ -183,38 +183,46 @@ type sample struct {
 func httpGetSamples(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Serving GET '/samples' request from %s ... ", r.RemoteAddr)
 	samples := []sample{}
-	for _, format := range sampleFormats {
-		dir := filepath.Join(serverCmdDir(), sampleDir, format)
-		files, err := ioutil.ReadDir(dir)
-		// fmt.Println("dirName", dir)
-		// fmt.Println("Filename", files) //getting the files from each folder
+	//getting the files from the edi dir
+	dir := filepath.Join(serverCmdDir(), sampleDir, "edi") //ownediparse/extensions/v21/samples/edi
+	fmt.Println("Direc", dir)
+	files, err := ioutil.ReadDir(dir)
+	if err != nil {
+		goto getSampleFailure
+	}
+	// for _, format := range sampleFormats {
+	// 	fmt.Println("format httpGetsamples", format)
+	// 	dir := filepath.Join(serverCmdDir(), sampleDir, format) // dir : =filepath.join
+	// 	files, err := ioutil.ReadDir(dir)
+	// 	fmt.Println("dirName", dir)
+	// 	fmt.Println("Filename", files) //getting the files from each folder
+	// 	if err != nil {
+	// 		goto getSampleFailure
+	// 	}
+	for _, f := range files {
+		submatch := sampleInputFilenamePattern.FindStringSubmatch(f.Name()) //make a filename from the schema name
+		fmt.Println("submatch", submatch)
+		if len(submatch) < 2 {
+			continue
+		}
+		sample := sample{
+			Name: filepath.Join("edi", submatch[1]),
+		} //Schema name
+		fmt.Println("sample name", sample)
+		schema, err := ioutil.ReadFile(filepath.Join(dir, submatch[1]+".schema.json")) //Reading the schema
+		fmt.Println("Schema readed", schema)                                           // read the schemas in byte array format.
 		if err != nil {
 			goto getSampleFailure
 		}
-		for _, f := range files {
-			submatch := sampleInputFilenamePattern.FindStringSubmatch(f.Name()) //make a filename from the schema name
-			// fmt.Println("submatch", submatch)
-			if len(submatch) < 2 {
-				continue
-			}
-			sample := sample{
-				Name: filepath.Join(format, submatch[1]),
-			} //Schema name
-			// fmt.Println("sample name", sample)
-			schema, err := ioutil.ReadFile(filepath.Join(dir, submatch[1]+".schema.json")) //Reading the schema
-			// fmt.Println("Schema readed", schema)
-			if err != nil {
-				goto getSampleFailure
-			}
-			sample.Schema = string(schema) // give values to the schema key
-			input, err := ioutil.ReadFile(filepath.Join(dir, f.Name()))
-			if err != nil {
-				goto getSampleFailure
-			}
-			sample.Input = string(input)      // give values to the input key
-			samples = append(samples, sample) // return the response array of names
+		sample.Schema = string(schema) // give values to the schema key
+		input, err := ioutil.ReadFile(filepath.Join(dir, f.Name()))
+		if err != nil {
+			goto getSampleFailure
 		}
+		sample.Input = string(input)      // give values to the input key
+		samples = append(samples, sample) // return the response array of names
 	}
+	// }
 	writeSuccess(w, samples) //Return the 200
 	return
 
@@ -225,6 +233,7 @@ getSampleFailure:
 
 //invoked at first
 func httpGetVersion(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Executing the ownediparser solution......")
 	log.Printf("Serving GET '/version' request from %s ... ", r.RemoteAddr)
 	writeSuccess(w, build)
 }

@@ -1,0 +1,476 @@
+{
+    "parser_settings": {
+        "version": "omni.2.1",
+        "file_format_type": "edi"
+    },
+    "file_declaration": {
+        "segment_delimiter": "~",
+        "element_delimiter": "*",
+        "component_delimiter": ">",
+        "ignore_crlf": true,
+        "segment_declarations": [
+            {
+                "name": "ISA",
+                "elements": [
+                    {
+                        "name": "AuthorizationInformationQualifier",
+                        "index": 1
+                    },
+                    {
+                        "name": "AuthorizationInformation",
+                        "index": 2
+                    },
+                    {
+                        "name": "SecurityInformationQualifier",
+                        "index": 3
+                    },
+                    {
+                        "name": "SecurityInformation",
+                        "index": 4
+                    },
+                    {
+                        "name": "InterchangeIdQualifier",
+                        "index": 5
+                    },
+                    {
+                        "name": "InterchangeSenderId",
+                        "index": 6
+                    },
+                    {
+                        "name": "InterchangeIdQualifier",
+                        "index": 7
+                    },
+                    {
+                        "name": "InterchangeReceiverId",
+                        "index": 8
+                    }
+                ],
+                "child_segments": [
+                    {
+                        "name": "GS",
+                        "child_segments": [
+                            {
+                                "name": "purchaseorder",
+                                "type": "segment_group",
+                                "min": 0,
+                                "max": -1,
+                                "is_target": true,
+                                "child_segments": [
+                                    {
+                                        "name": "ST",
+                                        "elements": [
+                                            {
+                                                "name": "TransactionSetIdentifierCode",
+                                                "index": 1
+                                            },
+                                            {
+                                                "name": "TransactionSetControlNumber",
+                                                "index": 2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "BEG",
+                                        "elements": [
+                                            {
+                                                "name": "TranscationSetPurposeCode",
+                                                "index": 1
+                                            },
+                                            {
+                                                "name": "PurchaseOrderType",
+                                                "index": 2
+                                            },
+                                            {
+                                                "name": "PurchaseOrderNumber",
+                                                "index": 3
+                                            },
+                                            {
+                                                "name": "ReleaseNumber",
+                                                "index": 4
+                                            },
+                                            {
+                                                "name": "Date",
+                                                "index": 5
+                                            },
+                                            {
+                                                "name": "ContractNumber",
+                                                "index": 6
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "CUR",
+                                        "elements": [
+                                            {
+                                                "name": "EntityIdentifierCode",
+                                                "index": 1
+                                            },
+                                            {
+                                                "name": "CurrencyCode",
+                                                "index": 2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "sacgrp",
+                                        "min": 0,
+                                        "max": -1,
+                                        "type":"segment_group",
+                                        "child_segments":[
+                                            {"name":"SAC","min":0,"elements":[
+                                            {"name":"Allowance","index":1},
+                                            {"name":"Service","index":2}
+                                        ]}
+                                      
+                                    ]
+                                    },
+                                    {
+                                        "name": "dtmgrp",
+                                        "min": 0,
+                                        "max": -1,
+                                        "type":"segment_group",
+                                        "child_segments":[
+                                            {"name":"DTM","min":0,"elements":[
+                                                {"name":"DateQualifier","index":1},
+                                                {"name":"Date","index":2}
+                                                ]}
+                                        ]
+                                    },
+                                    {
+                                        "name": "N1",
+                                        "elements": [
+                                            {
+                                                "name": "EntityIdentifierCode",
+                                                "index": 1
+                                            },
+                                            {
+                                                "name": "Name",
+                                                "index": 2
+                                            },
+                                            {
+                                                "name": "IdentificationCodeQualifier",
+                                                "index": 3
+                                            },
+                                            {
+                                                "name": "IdentificationCode",
+                                                "index": 4
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "N3",
+                                        "elements": [
+                                            {
+                                                "name": "Address",
+                                                "index": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "N4",
+                                        "elements": [
+                                            {
+                                                "name": "City",
+                                                "index": 1
+                                            },
+                                            {
+                                                "name": "State",
+                                                "index": 2
+                                            },
+                                            {
+                                                "name": "PostalCode",
+                                                "index": 3
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "refgrp",
+                                        "min": 0,
+                                        "max": -1,
+                                        "type":"segment_group",
+                                        "child_segments":[
+                                            {"name":"REF","min":0,"elements":[
+                                                {"name":"ReferenceIdentificationQualifier","index":1},
+                                                {"name":"ReferenceIdentification","index":2}
+                                                ]}
+                                        ]
+                                    },
+                                    {
+                                        "name": "productdetgrp",
+                                        "type": "segment_group",
+                                        "min": 0,
+                                        "max": 10,
+                                        "child_segments": [
+                                            {
+                                                "name": "PO1",
+                                                "min": 0,
+                                                "elements":[
+                                                    {"name":"AssignedIdentification","index":1},
+                                                    {"name":"Quantity","index":2},
+                                                    {"name":"UnitCode","index":3},
+                                                    {"name":"UnitPrice","index":4},
+                                                    {"name":"BasisofUnitPrice","index":5},
+                                                    {"name":"ProductQualifier1","index":6},
+                                                    {"name":"ProductID1","index":7},
+                                                    {"name":"ProductQualifier2","index":8},
+                                                    {"name":"ProductID2","index":9},
+                                                    {"name":"ProductQualifier3","index":10},
+                                                    {"name":"ProductID3","index":11}
+                                                ]
+                                            },
+                                            {
+                                                "name": "PID",
+                                                "min": 0,
+                                                "elements":[
+                                                    {"name":"ItemDescriptionType","index":1},
+                                                    {"name":"ProductCharacteristicsCode","index":2},
+                                                    {"name":"AgencyQualifierCode","index":3},
+                                                    {"name":"ProductDescriptionCode","index":4},
+                                                    {"name":"Description","index":5}
+                                                ]
+                                            },
+                                            {
+                                                "name": "PO4",
+                                                "min": 0,
+                                                "elements":[
+                                                    {"name":"Pack","index":1},
+                                                    {"name":"Size","index":2},
+                                                    {"name":"Unit","index":3}
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "CTT",
+                                        "min": 0,
+                                        "elements":[
+                                            {"name":"NumberofLineItems","index":1},
+                                            {"name":"Hashtotal","index":2}
+                                        ]
+                                    },
+                                    {
+                                        "name": "AMT",
+                                        "min": 0,
+                                        "elements":[
+                                            {"name":"AmountQualifierCode","index":1},
+                                            {"name":"MonetaryAmount","index":2}
+                                        ]
+                                    },
+                                    {
+                                        "name": "SE",
+                                        "min": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "GE",
+                        "min": 0
+                    }
+                ]
+            },
+            {
+                "name": "IEA",
+                "min": 0
+            }
+        ]
+    },
+    "transform_declarations": {
+        "FINAL_OUTPUT": {
+            "object": {
+                "ISA": {
+                    "object": {
+                        "AuthorizationInformationQualifier": {
+                            "xpath": "ISA/AuthorizationInformationQualifier"
+                        },
+                        "AuthorizationInformation": {
+                            "xpath": "ISA/AuthorizationInformation"
+                        },
+                        "SecurityInformationQualifier": {
+                            "xpath": "ISA/SecurityInformationQualifier"
+                        },
+                        "SecurityInformation": {
+                            "xpath": "ISA/SecurityInformation"
+                        },
+                        "InterchangeIdQualifierSender": {
+                            "xpath": "ISA/InterchangeIdQualifier"
+                        },
+                        "InterchangeSenderId": {
+                            "xpath": "ISA/InterchangeSenderId"
+                        },
+                        "InterchangeIdQualifierReceiver": {
+                            "xpath": "ISA/InterchangeIdQualifier"
+                        },
+                        "InterchangeReceiverId": {
+                            "xpath": "ISA/InterchangeReceiverId"
+                        }
+                    }
+                },
+                "ST": {
+                    "object": {
+                        "TransactionSetIdentifierCode": {
+                            "xpath": "ST/TransactionSetIdentifierCode"
+                        },
+                        "TransactionSetControlNumber": {
+                            "xpath": "ST/TransactionSetControlNumber"
+                        }
+                    }
+                },
+                "BEG": {
+                    "object": {
+                        "TranscationSetPurposeCode": {
+                            "xpath": "BEG/TranscationSetPurposeCode"
+                        },
+                        "PurchaseOrderType": {
+                            "xpath": "BEG/PurchaseOrderType"
+                        },
+                        "PurchaseOrderNumber": {
+                            "xpath": "BEG/PurchaseOrderNumber"
+                        },
+                        "ReleaseNumber": {
+                            "xpath": "BEG/ReleaseNumber"
+                        },
+                        "Date": {
+                            "xpath": "BEG/Date"
+                        },
+                        "ContractNumber": {
+                            "xpath": "BEG/ContractNumber"
+                        }
+                    }
+                },
+                "CUR": {
+                    "object": {
+                        "EntityIdentifierCode": {
+                            "xpath": "CUR/EntityIdentifierCode"
+                        },
+                        "CurrencyCode": {
+                            "xpath": "CUR/CurrencyCode"
+                        }
+                    }
+                },
+                "SAC":{
+                    "array":[{
+                        "xpath":"sacgrp[SAC]","object":{
+                            "Allowance":{"xpath":"SAC/Allowance"},
+                            "Service":{"xpath":"SAC/Service"}
+                           
+                        }
+                    }
+                    ]
+                },
+                "DTM":{
+                    "array":[{
+                        "xpath":"dtmgrp[DTM]","object":{
+                            "DateQualifier":{"xpath":"DTM/DateQualifier"},
+                            "Date":{"xpath":"DTM/Date"}
+                        }
+
+                    }]
+                },
+                "N1": {
+                    "object": {
+                        "EntityIdentifierCode": {
+                            "xpath": "N1/EntityIdentifierCode"
+                        },
+                        "Name": {
+                            "xpath": "N1/Name"
+                        },
+                        "IdentificationCodeQualifier":{"xpath":"N1/IdentificationCodeQualifier"},
+                        "IdentificationCode":{"xpath":"N1/IdentificationCode"}
+                    }
+                },
+                "N3": {
+                    "object": {
+                        "Address": {
+                            "xpath": "N3/Address"
+                        }
+                    }
+                },
+                "N4": {
+                    "object": {
+                        "City": {
+                            "xpath": "N4/City"
+                        },
+                        "State": {
+                            "xpath": "N4/State"
+                        },
+                        "PostalCode":{
+                            "xpath":"N4/PostalCode"
+                        }
+                    }
+                },
+                "REF":{
+                    "array":[{
+                        "xpath":"refgrp[REF]","object":{
+                            "ReferenceIdentificationQualifier":{"xpath":"REF/ReferenceIdentificationQualifier"},
+                            "ReferenceIdentification":{"xpath":"REF/ReferenceIdentification"}
+                        }
+                    }]
+                },
+                "ProductDetails_PO1":{
+                    "array":[
+                        {
+                            "xpath":"productdetgrp[PO1]","object":{
+                                "AssignedIdentification":{"xpath":"PO1/AssignedIdentification"},
+                               "Quantity":{"xpath":"PO1/Quantity"},
+                                 "UnitCode":{"xpath":"PO1/UnitCode"},
+                                "UnitPrice":{"xpath":"PO1/UnitPrice"},
+                               "BasisofUnitPrice":{"xpath":"PO1/BasisofUnitPrice"},
+                               "ProductQualifier1":{"xpath":"PO1/ProductQualifier1"},
+                                 "ProductID1":{"xpath":"PO1/ProductID1"},
+                                "ProductQualifier2":{"xpath":"PO1/ProductQualifier2"},
+                                "ProductID2":{"xpath":"PO1/ProductID2"},
+                                "ProductQualifier3":{"xpath":"PO1/ProductQualifier3"},
+                                "ProductID3":{"xpath":"PO1/ProductID3"}
+                             }     
+                        }   
+                    ]
+                    
+                },
+                "ProductDetails_PID":{
+                    "array":[{
+                        "xpath":"productdetgrp[PID]","object":{
+                            "ItemDescriptionType":{"xpath":"PID/ItemDescriptionType"},
+                            "ProductCharacteristicsCode":{"xpath":"PID/ProductCharacteristicsCode"},
+                            "AgencyQualifierCode":{"xpath":"PID/AgencyQualifierCode"},
+                            "ProductDescriptionCode":{"xpath":"PID/ProductDescriptionCode"},
+                            "Description":{"xpath":"PID/Description"}
+                     }
+                    }]
+
+                },
+                "ProductDetails_PO4":{
+                    "array":[{
+                        "xpath":"productdetgrp[PO4]","object":{
+                            "Pack":{"xpath":"PO4/pack"},
+                            "Size":{"xpath":"PO4/Size"},
+                            "Unit":{"xpath":"PO4/Unit"}
+                        } 
+                    }]
+                },
+                "CTT": {
+                    "object": {
+                        "NumberofLineItems": {
+                            "xpath": "CTT/NumberofLineItems"
+                        },
+                        "Hashtotal": {
+                            "xpath": "CTT/Hashtotal"
+                        }
+                    }
+                },
+                "AMT": {
+                    "object": {
+                        "AmountQualifierCode": {
+                            "xpath": "AMT/AmountQualifierCode"
+                        },
+                        "MonetaryAmount": {
+                            "xpath": "AMT/MonetaryAmount"
+                        }
+                    }
+                }
+            }
+        }
+     
+    }
+}
