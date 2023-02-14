@@ -5,8 +5,7 @@ import (
 	"os"
 	"strings"
 
-	// "github/Perachi0405/ownediparse"
-	"github/Perachi0405/ownediparse/cli/cmd"
+	"github.com/Perachi0405/ownediparse/cli/cmd"
 )
 
 var (

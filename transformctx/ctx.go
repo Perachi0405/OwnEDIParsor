@@ -3,8 +3,7 @@ package transformctx
 import (
 	"fmt"
 
-	"github/Perachi0405/ownediparse/errs"
-	// "Ediparse/errs"
+	"github.com/Perachi0405/ownediparse/errs"
 )
 
 // Ctx is the context object used throughout a Transform operation.

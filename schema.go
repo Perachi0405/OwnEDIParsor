@@ -6,17 +6,17 @@ import (
 	"io"
 	"io/ioutil"
 
-	omniv21 "github/Perachi0405/ownediparse/extensions/v21"
-	v21 "github/Perachi0405/ownediparse/extensions/v21/customfuncs"
+	omniv21 "github.com/Perachi0405/ownediparse/extensions/v21"
+	v21 "github.com/Perachi0405/ownediparse/extensions/v21/customfuncs"
 
 	"github.com/jf-tech/go-corelib/ios"
 
-	"github/Perachi0405/ownediparse/customfuncs"
-	"github/Perachi0405/ownediparse/errs"
-	"github/Perachi0405/ownediparse/header"
-	"github/Perachi0405/ownediparse/schemahandler"
-	"github/Perachi0405/ownediparse/transformctx"
-	"github/Perachi0405/ownediparse/validation"
+	"github.com/Perachi0405/ownediparse/customfuncs"
+	"github.com/Perachi0405/ownediparse/errs"
+	"github.com/Perachi0405/ownediparse/header"
+	"github.com/Perachi0405/ownediparse/schemahandler"
+	"github.com/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/validation"
 )
 
 // Schema is an interface that represents a schema used by omniparser.

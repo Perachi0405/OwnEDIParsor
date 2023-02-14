@@ -3,9 +3,9 @@ package customfuncs
 import (
 	"fmt"
 
-	"github/Perachi0405/ownediparse/customfuncs"
-	"github/Perachi0405/ownediparse/idr"
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/customfuncs"
+	"github.com/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 // OmniV21CustomFuncs contains 'omni.2.1' specific custom funcs.

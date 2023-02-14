@@ -5,12 +5,11 @@ import (
 	"strings"
 	"testing"
 
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 
 	"github.com/bradleyjkemp/cupaloy"
 	"github.com/jf-tech/go-corelib/jsons"
 	"github.com/stretchr/testify/assert"
-	// "github.com/jf-tech/omniparser/idr"
 )
 
 func TestDumpOmniV21CustomFuncNames(t *testing.T) {

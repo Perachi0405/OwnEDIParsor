@@ -6,7 +6,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 // CustomFuncType is the type of custom function. Has to use interface{} given we support

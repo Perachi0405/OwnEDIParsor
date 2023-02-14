@@ -8,8 +8,8 @@ import (
 	"github.com/dop251/goja"
 	"github.com/jf-tech/go-corelib/caches"
 
-	"github/Perachi0405/ownediparse/idr"
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 const (

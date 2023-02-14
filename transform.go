@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github/Perachi0405/ownediparse/errs"
-	"github/Perachi0405/ownediparse/schemahandler"
+	"github.com/Perachi0405/ownediparse/errs"
+	"github.com/Perachi0405/ownediparse/schemahandler"
 )
 
 // Transform is an interface that represents one input stream ingestion and transform

@@ -3,11 +3,11 @@ package fileformat
 import (
 	"io"
 
-	"github/Perachi0405/ownediparse/errs"
+	"github.com/Perachi0405/ownediparse/errs"
 
-	"github/Perachi0405/ownediparse/extensions/v21/transform"
+	"github.com/Perachi0405/ownediparse/extensions/v21/transform"
 
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 )
 
 // FileFormat defines a specific file format.

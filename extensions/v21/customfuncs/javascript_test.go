@@ -5,7 +5,7 @@ import (
 	"sync"
 	"testing"
 
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 
 	"github.com/stretchr/testify/assert"
 )

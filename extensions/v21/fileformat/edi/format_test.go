@@ -10,8 +10,8 @@ import (
 	"github.com/jf-tech/go-corelib/strs"
 	"github.com/stretchr/testify/assert"
 
-	"github/Perachi0405/ownediparse/extensions/v21/transform"
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/extensions/v21/transform"
+	"github.com/Perachi0405/ownediparse/idr"
 )
 
 func TestValidateSchema(t *testing.T) {

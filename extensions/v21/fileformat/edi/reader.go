@@ -10,8 +10,7 @@ import (
 	"github.com/jf-tech/go-corelib/ios"
 	"github.com/jf-tech/go-corelib/strs"
 
-	"github/Perachi0405/ownediparse/idr"
-	// "github.com/jf-tech/omniparser/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 )
 
 type stackEntry struct {

@@ -19,8 +19,8 @@ import (
 	"github.com/jf-tech/go-corelib/jsons"
 	"github.com/spf13/cobra"
 
-	"github/Perachi0405/ownediparse"
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 var (

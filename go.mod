@@ -1,4 +1,4 @@
-module github/Perachi0405/ownediparse
+module github.com/Perachi0405/ownediparse
 
 go 1.19
 

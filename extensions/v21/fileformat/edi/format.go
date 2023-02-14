@@ -6,18 +6,18 @@ import (
 	"io"
 	"strings"
 
-	"github/Perachi0405/ownediparse/errs"
+	"github.com/Perachi0405/ownediparse/errs"
 
 	"github.com/jf-tech/go-corelib/caches"
 	"github.com/jf-tech/go-corelib/strs"
 
-	"github/Perachi0405/ownediparse/extensions/v21/fileformat"
+	"github.com/Perachi0405/ownediparse/extensions/v21/fileformat"
 
-	"github/Perachi0405/ownediparse/extensions/v21/transform"
+	"github.com/Perachi0405/ownediparse/extensions/v21/transform"
 
-	v21validation "github/Perachi0405/ownediparse/extensions/v21/validation"
+	v21validation "github.com/Perachi0405/ownediparse/extensions/v21/validation"
 
-	"github/Perachi0405/ownediparse/validation"
+	"github.com/Perachi0405/ownediparse/validation"
 )
 
 const (
