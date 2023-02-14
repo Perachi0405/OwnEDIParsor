@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 
@@ -10,11 +11,15 @@ import (
 var rootCmd = &cobra.Command{
 	Use:  "op",
 	Long: "op is a CLI of omniparser that ingests data input (such as CSV/XML/JSON/EDI/etc) and transforms into desired output by a schema.",
-}
+} //It is a pointer variable of type command in cobra package.
 
 func init() {
-	rootCmd.AddCommand(transformCmd)
+	fmt.Println("init invoked in rootCmd")
+
+	// rootCmd.AddCommand(transformCmd)
 	rootCmd.AddCommand(serverCmd)
+
+	fmt.Println("Rootcommandchecking", rootCmd)
 }
 
 type buildInfo struct {

@@ -1,11 +1,12 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 	"strings"
 
-	"github.com/Perachi0405/ownEDIParsor/cli/cmd"
+	// "github/Perachi0405/ownediparse"
+	"github/Perachi0405/ownediparse/cli/cmd"
 )
 
 var (
@@ -16,22 +17,18 @@ var (
 )
 
 func main() {
-	fmt.Print("in main")
+
+	log.SetFlags(log.LstdFlags | log.Lshortfile | log.Lmicroseconds)
 	if err := cmd.Execute(getGitCommit(), getBuildEpochSec()); err != nil {
 		os.Exit(1)
-		fmt.Println("Errorin Main", err)
 	}
-	// serversamp = cmd.
-	fmt.Println("ServerCommand")
-
+	log.Println("Checking main")
 }
 
 func getGitCommit() string {
-	fmt.Println("Inside the getGitCommit()")
 	shaPrefix := func(sha string) string {
 		return string(([]rune(sha))[:7])
 	}
-	fmt.Println("getGitCommit() shaPrefix")
 	if gitCommit != "" {
 		gitCommit = shaPrefix(gitCommit)
 		return gitCommit
@@ -51,17 +48,13 @@ func getGitCommit() string {
 		return gitCommit
 	}
 	gitCommit = "(unknown)"
-	fmt.Print("in git commit", gitCommit)
 	return gitCommit
 }
 
 func getBuildEpochSec() string {
-	fmt.Println("getBuildEpochSec() Function")
 	if buildEpochSec != "" {
-		fmt.Print("in git buildEpochSec", buildEpochSec)
 		return buildEpochSec
 	}
 	buildEpochSec = "(unknown)"
-	fmt.Print("in git buildEpochSec", buildEpochSec)
 	return buildEpochSec
 }

@@ -1,0 +1,190 @@
+{
+	"Children": [
+		{
+			"Children": [
+				{
+					"Children": [
+						{
+							"Children": null,
+							"Data": "textB1",
+							"FirstChild": null,
+							"FormatSpecific": {
+								"NamespacePrefix": "",
+								"NamespaceURI": ""
+							},
+							"LastChild": null,
+							"NextSibling": null,
+							"Parent": "(ElementNode elemB1)",
+							"PrevSibling": null,
+							"Type": "TextNode"
+						}
+					],
+					"Data": "elemB1",
+					"FirstChild": "(TextNode 'textB1')",
+					"FormatSpecific": {
+						"NamespacePrefix": "",
+						"NamespaceURI": ""
+					},
+					"LastChild": "(TextNode 'textB1')",
+					"NextSibling": null,
+					"Parent": "(ElementNode elemB)",
+					"PrevSibling": null,
+					"Type": "ElementNode"
+				}
+			],
+			"Data": "elemB",
+			"FirstChild": "(ElementNode elemB1)",
+			"FormatSpecific": {
+				"NamespacePrefix": "",
+				"NamespaceURI": ""
+			},
+			"LastChild": "(ElementNode elemB1)",
+			"NextSibling": "(ElementNode elemC)",
+			"Parent": "(DocumentNode)",
+			"PrevSibling": null,
+			"Type": "ElementNode"
+		},
+		{
+			"Children": [
+				{
+					"Children": [
+						{
+							"Children": null,
+							"Data": "textC1",
+							"FirstChild": null,
+							"FormatSpecific": {
+								"NamespacePrefix": "",
+								"NamespaceURI": ""
+							},
+							"LastChild": null,
+							"NextSibling": null,
+							"Parent": "(AttributeNode attrC1)",
+							"PrevSibling": null,
+							"Type": "TextNode"
+						}
+					],
+					"Data": "attrC1",
+					"FirstChild": "(TextNode 'textC1')",
+					"FormatSpecific": {
+						"NamespacePrefix": "",
+						"NamespaceURI": ""
+					},
+					"LastChild": "(TextNode 'textC1')",
+					"NextSibling": "(AttributeNode attrC2)",
+					"Parent": "(ElementNode elemC)",
+					"PrevSibling": null,
+					"Type": "AttributeNode"
+				},
+				{
+					"Children": [
+						{
+							"Children": null,
+							"Data": "textC2",
+							"FirstChild": null,
+							"FormatSpecific": {
+								"NamespacePrefix": "",
+								"NamespaceURI": ""
+							},
+							"LastChild": null,
+							"NextSibling": null,
+							"Parent": "(AttributeNode attrC2)",
+							"PrevSibling": null,
+							"Type": "TextNode"
+						}
+					],
+					"Data": "attrC2",
+					"FirstChild": "(TextNode 'textC2')",
+					"FormatSpecific": {
+						"NamespacePrefix": "",
+						"NamespaceURI": ""
+					},
+					"LastChild": "(TextNode 'textC2')",
+					"NextSibling": "(ElementNode elemC3)",
+					"Parent": "(ElementNode elemC)",
+					"PrevSibling": "(AttributeNode attrC1)",
+					"Type": "AttributeNode"
+				},
+				{
+					"Children": [
+						{
+							"Children": null,
+							"Data": "textC3",
+							"FirstChild": null,
+							"FormatSpecific": {
+								"NamespacePrefix": "",
+								"NamespaceURI": ""
+							},
+							"LastChild": null,
+							"NextSibling": null,
+							"Parent": "(ElementNode elemC3)",
+							"PrevSibling": null,
+							"Type": "TextNode"
+						}
+					],
+					"Data": "elemC3",
+					"FirstChild": "(TextNode 'textC3')",
+					"FormatSpecific": {
+						"NamespacePrefix": "",
+						"NamespaceURI": ""
+					},
+					"LastChild": "(TextNode 'textC3')",
+					"NextSibling": "(ElementNode elemC4)",
+					"Parent": "(ElementNode elemC)",
+					"PrevSibling": "(AttributeNode attrC2)",
+					"Type": "ElementNode"
+				},
+				{
+					"Children": [
+						{
+							"Children": null,
+							"Data": "textC4",
+							"FirstChild": null,
+							"FormatSpecific": {
+								"NamespacePrefix": "",
+								"NamespaceURI": ""
+							},
+							"LastChild": null,
+							"NextSibling": null,
+							"Parent": "(ElementNode elemC4)",
+							"PrevSibling": null,
+							"Type": "TextNode"
+						}
+					],
+					"Data": "elemC4",
+					"FirstChild": "(TextNode 'textC4')",
+					"FormatSpecific": {
+						"NamespacePrefix": "",
+						"NamespaceURI": ""
+					},
+					"LastChild": "(TextNode 'textC4')",
+					"NextSibling": null,
+					"Parent": "(ElementNode elemC)",
+					"PrevSibling": "(ElementNode elemC3)",
+					"Type": "ElementNode"
+				}
+			],
+			"Data": "elemC",
+			"FirstChild": "(AttributeNode attrC1)",
+			"FormatSpecific": {
+				"NamespacePrefix": "",
+				"NamespaceURI": ""
+			},
+			"LastChild": "(ElementNode elemC4)",
+			"NextSibling": null,
+			"Parent": "(DocumentNode)",
+			"PrevSibling": "(ElementNode elemB)",
+			"Type": "ElementNode"
+		}
+	],
+	"Data": "root",
+	"FirstChild": "(ElementNode elemB)",
+	"FormatSpecific": {
+		"NamespacePrefix": "",
+		"NamespaceURI": ""
+	},
+	"LastChild": "(ElementNode elemC)",
+	"NextSibling": null,
+	"Parent": null,
+	"PrevSibling": null,
+	"Type": "DocumentNode"
+}

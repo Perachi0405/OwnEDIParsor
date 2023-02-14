@@ -1,8 +1,10 @@
 package transformctx
 
 import (
-	// "github.com/Perachi0405/ownEDIParsor/errs"
-	"github.com/jf-tech/omniparser/errs"
+	"fmt"
+
+	"github/Perachi0405/ownediparse/errs"
+	// "Ediparse/errs"
 )
 
 // Ctx is the context object used throughout a Transform operation.
@@ -27,5 +29,9 @@ type Ctx struct {
 // External looks up, and returns an external property value, if exists.
 func (ctx *Ctx) External(name string) (string, bool) {
 	v, found := ctx.ExternalProperties[name]
+	fmt.Println("ctx v", v)
+	fmt.Println("ctx found", found)
+
 	return v, found
+
 }
