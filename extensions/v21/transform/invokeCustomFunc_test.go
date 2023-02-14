@@ -3,7 +3,7 @@ package transform
 import (
 	"testing"
 
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 
 	"github.com/jf-tech/go-corelib/strs"
 	"github.com/stretchr/testify/assert"

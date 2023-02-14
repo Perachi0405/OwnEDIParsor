@@ -3,15 +3,15 @@ package transform
 import (
 	"testing"
 
-	"github/Perachi0405/ownediparse/customfuncs"
+	"github.com/Perachi0405/ownediparse/customfuncs"
 
 	"github.com/bradleyjkemp/cupaloy"
 	"github.com/jf-tech/go-corelib/jsons"
 	"github.com/jf-tech/go-corelib/strs"
 	"github.com/stretchr/testify/assert"
 
-	"github/Perachi0405/ownediparse/idr"
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 func TestValidateTransformDeclarations(t *testing.T) {

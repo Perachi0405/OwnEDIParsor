@@ -4,16 +4,16 @@ import (
 	"errors"
 	"testing"
 
-	"github/Perachi0405/ownediparse/customfuncs"
+	"github.com/Perachi0405/ownediparse/customfuncs"
 
 	"github.com/jf-tech/go-corelib/strs"
 	"github.com/stretchr/testify/assert"
 
-	v21 "github/Perachi0405/ownediparse/extensions/v21/customfuncs"
+	v21 "github.com/Perachi0405/ownediparse/extensions/v21/customfuncs"
 
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 func testNode() *idr.Node {

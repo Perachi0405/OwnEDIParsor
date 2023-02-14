@@ -4,11 +4,11 @@ import (
 	"errors"
 	"testing"
 
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 
 	"github.com/stretchr/testify/assert"
 
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 func TestInvokeCustomParse(t *testing.T) {

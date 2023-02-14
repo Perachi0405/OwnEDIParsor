@@ -5,12 +5,12 @@ import (
 	"reflect"
 	"strconv"
 
-	"github/Perachi0405/ownediparse/customfuncs"
+	"github.com/Perachi0405/ownediparse/customfuncs"
 
 	"github.com/jf-tech/go-corelib/strs"
 
-	"github/Perachi0405/ownediparse/idr"
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 type parseCtx struct {

@@ -3,10 +3,11 @@ package transform
 import (
 	"encoding/json"
 	"fmt"
-	"github/Perachi0405/ownediparse/customfuncs"
 	"reflect"
 	"sort"
 	"strings"
+
+	"github.com/Perachi0405/ownediparse/customfuncs"
 
 	"github.com/google/uuid"
 	"github.com/jf-tech/go-corelib/strs"

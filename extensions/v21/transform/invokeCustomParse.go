@@ -2,9 +2,10 @@ package transform
 
 import (
 	"fmt"
-	"github/Perachi0405/ownediparse/idr"
-	"github/Perachi0405/ownediparse/transformctx"
 	"reflect"
+
+	"github.com/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 // CustomParseFuncType represents a custom_parse function type. Deprecated. Use customfuncs.CustomFuncType.

@@ -13,7 +13,7 @@ import (
 	"github.com/jf-tech/go-corelib/testlib"
 	"github.com/stretchr/testify/assert"
 
-	"github/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/idr"
 )
 
 func TestIsErrInvalidEDI(t *testing.T) {

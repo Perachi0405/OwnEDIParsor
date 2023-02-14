@@ -5,13 +5,13 @@ import (
 	"errors"
 	"fmt"
 
-	"github/Perachi0405/ownediparse/customfuncs"
-	"github/Perachi0405/ownediparse/errs"
-	"github/Perachi0405/ownediparse/extensions/v21/fileformat"
-	"github/Perachi0405/ownediparse/extensions/v21/transform"
-	"github/Perachi0405/ownediparse/idr"
-	"github/Perachi0405/ownediparse/schemahandler"
-	"github/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/customfuncs"
+	"github.com/Perachi0405/ownediparse/errs"
+	"github.com/Perachi0405/ownediparse/extensions/v21/fileformat"
+	"github.com/Perachi0405/ownediparse/extensions/v21/transform"
+	"github.com/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/schemahandler"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 type rawRecord struct {

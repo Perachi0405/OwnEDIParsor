@@ -2,15 +2,16 @@ package v21
 
 import (
 	"fmt"
-	"github/Perachi0405/ownediparse/errs"
-	"github/Perachi0405/ownediparse/extensions/v21/fileformat"
-	"github/Perachi0405/ownediparse/extensions/v21/fileformat/edi"
-	"github/Perachi0405/ownediparse/extensions/v21/transform"
-	v21validation "github/Perachi0405/ownediparse/extensions/v21/validation"
-	"github/Perachi0405/ownediparse/schemahandler"
-	"github/Perachi0405/ownediparse/transformctx"
-	"github/Perachi0405/ownediparse/validation"
 	"io"
+
+	"github.com/Perachi0405/ownediparse/errs"
+	"github.com/Perachi0405/ownediparse/extensions/v21/fileformat"
+	"github.com/Perachi0405/ownediparse/extensions/v21/fileformat/edi"
+	"github.com/Perachi0405/ownediparse/extensions/v21/transform"
+	v21validation "github.com/Perachi0405/ownediparse/extensions/v21/validation"
+	"github.com/Perachi0405/ownediparse/schemahandler"
+	"github.com/Perachi0405/ownediparse/transformctx"
+	"github.com/Perachi0405/ownediparse/validation"
 )
 
 const (

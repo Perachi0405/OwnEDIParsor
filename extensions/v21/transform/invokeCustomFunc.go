@@ -2,8 +2,9 @@ package transform
 
 import (
 	"fmt"
-	"github/Perachi0405/ownediparse/idr"
 	"reflect"
+
+	"github.com/Perachi0405/ownediparse/idr"
 )
 
 func (p *parseCtx) invokeCustomFunc(n *idr.Node, customFuncDecl *CustomFuncDecl) (interface{}, error) {
