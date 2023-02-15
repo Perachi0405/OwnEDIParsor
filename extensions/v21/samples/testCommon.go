@@ -7,12 +7,12 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/Perachi0405/ownediparse"
 	"github.com/jf-tech/go-corelib/jsons"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/jf-tech/omniparser"
-	"github.com/jf-tech/omniparser/idr"
-	"github.com/jf-tech/omniparser/transformctx"
+	"github.com/Perachi0405/ownediparse/idr"
+	"github.com/Perachi0405/ownediparse/transformctx"
 )
 
 // SampleTestCommon is a test helper for sample tests
@@ -27,7 +27,7 @@ func SampleTestCommon(t *testing.T, schemaFile, inputFile string) string {
 	assert.NoError(t, err)
 	defer inputFileReader.Close()
 
-	schema, err := omniparser.NewSchema(schemaFileBaseName, schemaFileReader)
+	schema, err := ownediparse.NewSchema(schemaFileBaseName, schemaFileReader)
 	assert.NoError(t, err)
 	transform, err := schema.NewTransform(inputFileBaseName, inputFileReader, &transformctx.Ctx{})
 	assert.NoError(t, err)
