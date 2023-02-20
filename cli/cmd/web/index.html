@@ -9,6 +9,7 @@
       $('textarea#outputText').val("");
       let req = JSON.stringify({schema: $('textarea#schemaText').val(), input: $('textarea#inputText').val()});
       console.log("Do transform request",req)
+      console.log("Stringify type",typeof(req)) //string
       const resp = await fetch('/transform', {
         method: 'POST',
         body: req,
@@ -41,6 +42,9 @@
       $('textarea#schemaText').val(samples[index].schema);//schema text box - assigin the seleted schema
       $('textarea#inputText').val(samples[index].input);//input text box - assign the selected input file
       $('textarea#outputText').val("");
+      console.log("schematype",typeof($('textarea#schemaText').val))
+      console.log("inputtype",typeof($('textarea#inputText').val))
+
     }
     const populateBuildInfo = async () => {
       const resp = await fetch('/version', {method: 'GET'});

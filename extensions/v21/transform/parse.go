@@ -26,7 +26,7 @@ func NewParseCtx(
 	transformCtx *transformctx.Ctx,
 	customFuncs customfuncs.CustomFuncs,
 	customParseFuncs CustomParseFuncs) *parseCtx {
-	fmt.Println("NewParseCtx exe..") //log not found
+	//fmt.Println("NewParseCtx exe..") //log not found
 	return &parseCtx{
 		transformCtx:          transformCtx,
 		customFuncs:           customFuncs,
@@ -37,8 +37,8 @@ func NewParseCtx(
 }
 
 func (p *parseCtx) ParseNode(n *idr.Node, decl *Decl) (interface{}, error) { //executes 1
-	fmt.Println("ParseNode exe...")
-	fmt.Println("ParseNode n", n) //&{20 0xc0004b9860 0xc0004b9b00 0xc000af46c0 <nil> <nil> ElementNode purchaseorder <nil>}
+	//fmt.Println("ParseNode exe...")
+	//fmt.Println("ParseNode n", n) //&{20 0xc0004b9860 0xc0004b9b00 0xc000af46c0 <nil> <nil> ElementNode purchaseorder <nil>}
 	var cacheKey string
 	if !p.disableTransformCache {
 		cacheKey = strconv.FormatInt(n.ID, 16) + "/" + decl.hash
@@ -53,7 +53,7 @@ func (p *parseCtx) ParseNode(n *idr.Node, decl *Decl) (interface{}, error) { //e
 			}
 			p.transformCache[cacheKey] = value
 		}
-		fmt.Println("saveIntoCache", value) //here for each iteration the value slice contains the each segment with key value pair in map[ReferenceIdentification:022 ReferenceIdentificationQualifier:DP]
+		//fmt.Println("saveIntoCache", value) //here for each iteration the value slice contains the each segment with key value pair in map[ReferenceIdentification:022 ReferenceIdentificationQualifier:DP]
 		return value, err
 	}
 	switch decl.kind {
@@ -77,7 +77,7 @@ func (p *parseCtx) ParseNode(n *idr.Node, decl *Decl) (interface{}, error) { //e
 }
 
 func (p *parseCtx) parseConst(decl *Decl) (interface{}, error) {
-	fmt.Println("parseConst exe..")
+	//fmt.Println("parseConst exe..")
 	return normalizeAndReturnValue(decl, *decl.Const)
 }
 
@@ -96,21 +96,21 @@ func xpathQueryNeeded(decl *Decl) bool {
 	// See details in parseArray().
 	// Now, if the transform is FINAL_OUTPUT, we never do xpath query on that, FINAL_OUTPUT's content node
 	// is always supplied by reader.
-	fmt.Println("xpathQueryNeeded", decl.Array)
+	//fmt.Println("xpathQueryNeeded", decl.Array)
 	return decl.fqdn != finalOutput &&
 		decl.isXPathSet() &&
 		(decl.parent == nil || decl.parent.kind != kindArray)
 }
 
 func (p *parseCtx) computeXPath(n *idr.Node, decl *Decl) (xpath string, dynamic bool, err error) {
-	fmt.Println("executes from querySingleNodeFromXPath")
+	//fmt.Println("executes from querySingleNodeFromXPath")
 	switch {
 	case strs.IsStrPtrNonBlank(decl.XPath):
 		xpath, dynamic, err = *(decl.XPath), false, nil
 	case decl.XPathDynamic != nil:
 		dynamic = true
 		xpath, err = p.computeXPathDynamic(n, decl.XPathDynamic)
-		fmt.Println("xpath computeXpathDynamic", xpath)
+		//fmt.Println("xpath computeXpathDynamic", xpath)
 	default:
 		xpath, dynamic, err = ".", false, nil
 	}
@@ -136,7 +136,7 @@ func (p *parseCtx) computeXPathDynamic(n *idr.Node, xpathDynamicDecl *Decl) (str
 }
 
 func xpathMatchFlags(dynamic bool) uint {
-	fmt.Println("xpathMatchFlag exe..")
+	// fmt.Println("xpathMatchFlag exe..")
 	if dynamic {
 		return idr.DisableXPathCache
 	}
@@ -144,18 +144,18 @@ func xpathMatchFlags(dynamic bool) uint {
 }
 
 func (p *parseCtx) querySingleNodeFromXPath(n *idr.Node, decl *Decl) (*idr.Node, error) { //executes 3
-	fmt.Println("execute querySingleNodeFromXPath")
+	// fmt.Println("execute querySingleNodeFromXPath")
 	if !xpathQueryNeeded(decl) {
 		return n, nil
 	}
 	xpath, dynamic, err := p.computeXPath(n, decl)
-	fmt.Println("computeXpath xpath", xpath)
-	fmt.Println("computeXpath dynamic", dynamic)
+	// fmt.Println("computeXpath xpath", xpath)
+	// fmt.Println("computeXpath dynamic", dynamic)
 	if err != nil {
 		return nil, nil
 	}
 	resultNode, err := idr.MatchSingle(n, xpath, xpathMatchFlags(dynamic))
-	fmt.Println("resultNode querySingleNodeFromXpath", resultNode)
+	// fmt.Println("resultNode querySingleNodeFromXpath", resultNode)
 	switch {
 	case err == idr.ErrNoMatch:
 		return nil, nil
@@ -164,14 +164,14 @@ func (p *parseCtx) querySingleNodeFromXPath(n *idr.Node, decl *Decl) (*idr.Node,
 	case err != nil:
 		return nil, fmt.Errorf("xpath query '%s' on '%s' failed: %s", xpath, decl.fqdn, err.Error())
 	}
-	fmt.Println("Resultnode querySingleNodeFromXpath", resultNode) //&{97 0xc0011f8900 0xc0011f8d20 0xc0011f8d20 0xc0011f89c0 <nil> ElementNode ReferenceIdentification <nil>}
+	// fmt.Println("Resultnode querySingleNodeFromXpath", resultNode) //&{97 0xc0011f8900 0xc0011f8d20 0xc0011f8d20 0xc0011f89c0 <nil> ElementNode ReferenceIdentification <nil>}
 	return resultNode, nil
 }
 
 func (p *parseCtx) parseField(n *idr.Node, decl *Decl) (interface{}, error) { //executes 2
-	fmt.Println("Parsingfield ...")
+	//fmt.Println("Parsingfield ...")
 	n, err := p.querySingleNodeFromXPath(n, decl)
-	fmt.Println("parsefield n", n) //&{22 0xc0004b9b00 0xc0004b9ce0 0xc0004b9ce0 <nil> 0xc0004b9e00 ElementNode TransactionSetIdentifierCode <nil>}
+	//fmt.Println("parsefield n", n) //&{22 0xc0004b9b00 0xc0004b9ce0 0xc0004b9ce0 <nil> 0xc0004b9e00 ElementNode TransactionSetIdentifierCode <nil>}
 	if err != nil {
 		return nil, err
 	}

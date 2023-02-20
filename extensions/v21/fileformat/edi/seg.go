@@ -1,8 +1,6 @@
 package edi
 
 import (
-	"fmt"
-
 	"github.com/jf-tech/go-corelib/maths"
 )
 
@@ -60,7 +58,7 @@ type SegDecl struct {
 }
 
 func (d *SegDecl) isGroup() bool {
-	fmt.Println("isGrp Executed")
+	//fmt.Println("isGrp Executed")
 	return d.Type != nil && *d.Type == segTypeGroup
 }
 

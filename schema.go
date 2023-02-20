@@ -69,6 +69,7 @@ var (
 // intends to use in the schemas supported by it must be included in the same extension.
 func NewSchema(name string, schemaReader io.Reader, exts ...Extension) (Schema, error) { //
 	fmt.Println("Invoked the Newschema")
+	fmt.Println("Inside schemaReader", schemaReader)
 	content, err := ioutil.ReadAll(schemaReader) //selected schema
 	// fmt.Println("NewSchema schema.go", string(content)) //reads the selected schema and try to
 	if err != nil {
@@ -141,10 +142,11 @@ func NewSchema(name string, schemaReader io.Reader, exts ...Extension) (Schema, 
 func (s *schema) NewTransform(name string, input io.Reader, ctx *transformctx.Ctx) (Transform, error) { //type what
 	fmt.Println("handler", s.handler)
 	fmt.Println("header", s.header)
+	fmt.Println("Sample input", input)
 	// fmt.Println("inputReader", input) //the EDI input file
 	//fmt.Println("encoding", s.header.ParserSettings.WrapEncoding(input)) //EDI input file ending with 0 -1
 	br, err := ios.StripBOM(s.header.ParserSettings.WrapEncoding(input))
-	fmt.Println("NewTransform br", br) //byte typed data with atlast special value is appended.
+	//fmt.Println("NewTransform br", br) //byte typed data with atlast special value is appended.
 	//fmt.Println("NewTransform err", err)//nil
 	if err != nil {
 		return nil, err

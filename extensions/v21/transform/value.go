@@ -116,7 +116,7 @@ func normalizeAndSaveValue(decl *Decl, v interface{}, save func(interface{})) er
 }
 
 func normalizeAndReturnValue(decl *Decl, v interface{}) (interface{}, error) {
-	fmt.Println("normalizeAndReturnValue exe..")
+	//fmt.Println("normalizeAndReturnValue exe..")
 	var ret interface{}
 	err := normalizeAndSaveValue(decl, v, func(normalizedValue interface{}) {
 		ret = normalizedValue
@@ -124,6 +124,6 @@ func normalizeAndReturnValue(decl *Decl, v interface{}) (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("return value normalizeAndReturnValue", ret)
+	//fmt.Println("return value normalizeAndReturnValue", ret)
 	return ret, nil
 }

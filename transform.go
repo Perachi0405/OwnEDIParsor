@@ -53,9 +53,9 @@ func (o *transform) Read() ([]byte, error) {
 		return nil, o.lastErr
 	}
 	fmt.Println("before o.ingester.Read()")
-	rawRecord, transformed, err := o.ingester.Read()     //for each call it return the rawrecord
-	fmt.Println("rawRecord Read transform", rawRecord)   //unknown formatted data.
-	fmt.Println("transformed Read", string(transformed)) // Transfered to JSON
+	rawRecord, transformed, err := o.ingester.Read()   //for each call it return the rawrecord
+	fmt.Println("rawRecord Read transform", rawRecord) //unknown formatted data.
+	//fmt.Println("transformed Read", string(transformed)) // Transfered to JSON
 	if err != nil {
 		if o.ingester.IsContinuableError(err) {
 			// If ingester error is continuable, wrap it into a standard generic ErrTransformFailed

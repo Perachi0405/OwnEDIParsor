@@ -65,10 +65,10 @@ var nodeCaching = true
 var nodePool sync.Pool
 
 func allocNode() *Node {
-	fmt.Println("AllocNode exe..")
+	//fmt.Println("AllocNode exe..")
 	n := &Node{}
 	n.reset()
-	fmt.Println("Result of allocnode()", n)
+	//fmt.Println("Result of allocnode()", n)
 	return n
 }
 
@@ -86,7 +86,7 @@ func init() {
 
 // CreateNode creates a generic *Node.
 func CreateNode(ntype NodeType, data string) *Node {
-	fmt.Println("CreateNode execute..")
+	//fmt.Println("CreateNode execute..")
 	if nodeCaching {
 		// Node out of pool has already been reset.
 		n := nodePool.Get().(*Node)
@@ -97,7 +97,7 @@ func CreateNode(ntype NodeType, data string) *Node {
 	n := allocNode()
 	n.Type = ntype
 	n.Data = data
-	fmt.Println("Return node", n)
+	//fmt.Println("Return node", n)
 	return n
 
 }
@@ -139,7 +139,7 @@ func (n *Node) InnerText() string {
 
 // AddChild adds 'n' as the new last child to 'parent'.
 func AddChild(parent, n *Node) {
-	fmt.Println("Addchild Parent", parent)
+	//fmt.Println("Addchild Parent", parent)
 	n.Parent = parent
 	n.NextSibling = nil
 	if parent.FirstChild == nil {
@@ -155,9 +155,9 @@ func AddChild(parent, n *Node) {
 // RemoveAndReleaseTree removes a node and its subtree from an IDR tree it is in and
 // release the resources (Node allocation) associated with the node and its subtree.
 func RemoveAndReleaseTree(n *Node) { //log not found
-	fmt.Println("enters into RemoveAndReleaseTree ")
-	fmt.Println("Parent", n.Parent)
-	fmt.Println("Lastchild", n.LastChild)
+	//fmt.Println("enters into RemoveAndReleaseTree ")
+	//fmt.Println("Parent", n.Parent)
+	//fmt.Println("Lastchild", n.LastChild)
 	if n.Parent == nil {
 		goto recycle
 	}
@@ -183,7 +183,7 @@ recycle:
 }
 
 func recycle(n *Node) {
-	fmt.Println("Recyle Executes..")
+	//fmt.Println("Recyle Executes..")
 
 	if !nodeCaching {
 		return

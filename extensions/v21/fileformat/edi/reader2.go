@@ -62,7 +62,7 @@ func newRawSeg() RawSeg {
 }
 
 func resetRawSeg(raw *RawSeg) {
-	fmt.Println("reset invoked")
+	//fmt.Println("reset invoked")
 	raw.valid = false
 	raw.Name = ""
 	raw.Raw = nil
@@ -70,12 +70,12 @@ func resetRawSeg(raw *RawSeg) {
 }
 
 func runeCountAndHasOnlyCRLF(b []byte) (int, bool) {
-	fmt.Println("executed runeCountAndHasOnlyCRLF")
+	//fmt.Println("executed runeCountAndHasOnlyCRLF")
 	runeCount := 0
 	onlyCRLF := true
 	for {
 		r, size := utf8.DecodeRune(b)
-		fmt.Println("DecodeRun", r) //Traversing the array of byte data
+		//fmt.Println("DecodeRun", r) //Traversing the array of byte data
 		if r == utf8.RuneError {
 			return runeCount, onlyCRLF
 		}
@@ -98,7 +98,7 @@ type strPtrByte struct {
 }
 
 func newStrPtrByte(strptr *string) strPtrByte {
-	fmt.Println("newStrPtrbyte strptr", strptr) //0xc000fc25f0
+	//fmt.Println("newStrPtrbyte strptr", strptr) //0xc000fc25f0
 	var b []byte
 	if strptr != nil {
 		b = []byte(*strptr)
@@ -125,19 +125,19 @@ type NonValidatingReader struct {
 // Read returns a raw segment of an EDI document. Note all the []byte are not a copy, so READONLY,
 // no modification.
 func (r *NonValidatingReader) Read() (RawSeg, error) {
-	fmt.Println("Continue Executing from getUnprocessedRawSeg()")
+	//fmt.Println("Continue Executing from getUnprocessedRawSeg()")
 	//Taking the each segment in array of bytes
 	//Traversing
 	resetRawSeg(&r.rawSeg) //resetting the struct
 	var token []byte
 	for r.scanner.Scan() {
-		b := r.scanner.Bytes()        //inbuild fun
-		fmt.Println("Bytes token", b) // N1*OB**92*1502~
+		b := r.scanner.Bytes() //inbuild fun
+		//fmt.Println("Bytes token", b) // N1*OB**92*1502~
 		// In rare occasions inputs are not strict EDI per se - they sometimes have trailing empty lines
 		// with only CR and/or LF. Let's be not so strict and ignore those lines.
 		count, onlyCRLF := runeCountAndHasOnlyCRLF(b)
-		fmt.Println("Count Read()", count)
-		fmt.Println("onlyCRLF Read()", onlyCRLF) //N1*OB**92*1502~ N3*5215 WADSWORTH BLVD~
+		//fmt.Println("Count Read()", count)
+		//fmt.Println("onlyCRLF Read()", onlyCRLF) //N1*OB**92*1502~ N3*5215 WADSWORTH BLVD~
 		r.runeBegin = r.runeEnd
 		r.runeEnd += count
 		if onlyCRLF {
@@ -153,7 +153,7 @@ func (r *NonValidatingReader) Read() (RawSeg, error) {
 	//    on Scan() and Err() returns nil). We need to return EOF, OR
 	// 3. r.scanner.Scan() returns false Err() returns err, need to return the `err` wrapped.
 	err := r.scanner.Err()
-	fmt.Println("Error in Read()", err)
+	//fmt.Println("Error in Read()", err)
 	if err != nil {
 		return RawSeg{}, ErrInvalidEDI(fmt.Sprintf("cannot read segment, err: %s", err.Error()))
 	}
@@ -163,10 +163,10 @@ func (r *NonValidatingReader) Read() (RawSeg, error) {
 	// From now on, the important thing is to operate on token (of []byte) without modification and without
 	// allocation to keep performance.
 	r.rawSeg.Raw = token
-	fmt.Println("token in Read()", r.rawSeg.Raw) //
+	//fmt.Println("token in Read()", r.rawSeg.Raw) //
 	// First we need to drop the trailing segment delimiter.
 	noSegDelim := token[:len(token)-len(r.segDelim.b)]
-	fmt.Println("NoSegDelim", noSegDelim) //PO1*0002*80*EA*10.249**VP*4000080*SK*419109*UP*400020002501 it is in array of byte type
+	//fmt.Println("NoSegDelim", noSegDelim) //PO1*0002*80*EA*10.249**VP*4000080*SK*419109*UP*400020002501 it is in array of byte type
 	// In rare occasions, input uses '\n' as segment delimiter, but '\r' somehow
 	// gets included as well (more common in business platform running on Windows)
 	// Drop that '\r' as well.
@@ -186,7 +186,7 @@ func (r *NonValidatingReader) Read() (RawSeg, error) {
 					CompIndex: 1,
 					Data:      elem,
 				})
-			fmt.Println("ByteSplitWithEsc1 return", r.rawSeg.Elems)
+			//fmt.Println("ByteSplitWithEsc1 return", r.rawSeg.Elems)
 			continue
 		}
 		for j, comp := range strs.ByteSplitWithEsc(elem, r.compDelim.b, r.releaseChar.b, defaultCompsPerElem) {
@@ -197,7 +197,7 @@ func (r *NonValidatingReader) Read() (RawSeg, error) {
 					CompIndex: j + 1,
 					Data:      comp,
 				})
-			fmt.Println("ByteSplitWithEsc2 result", r.rawSeg.Elems) //making each segment inside an array with segment name and value
+			//fmt.Println("ByteSplitWithEsc2 result", r.rawSeg.Elems) //making each segment inside an array with segment name and value
 			//starts with PID
 			//[{0 1 [80 73 68]} {1 1 [70]}] here similary to {01 - [PID]} {02 - [F] }
 			//
@@ -208,8 +208,8 @@ func (r *NonValidatingReader) Read() (RawSeg, error) {
 	}
 	r.rawSeg.Name = string(r.rawSeg.Elems[0].Data)
 	r.rawSeg.valid = true
-	fmt.Println("RawSegment Name", r.rawSeg.Name)
-	fmt.Println("RawSegment return", r.rawSeg.Elems) //[{0 1 [80 73 68]} {1 1 [70]} {2 1 []} {3 1 []} {4 1 []} {5 1 [53 47 56 73 78 32 52 70 84 88 56 70 84 32 70 82 67 79 68 69 32 68 82 89 87 76 76 45 74 76 81 54 55 50]}]
+	//fmt.Println("RawSegment Name", r.rawSeg.Name)
+	//fmt.Println("RawSegment return", r.rawSeg.Elems) //[{0 1 [80 73 68]} {1 1 [70]} {2 1 []} {3 1 []} {4 1 []} {5 1 [53 47 56 73 78 32 52 70 84 88 56 70 84 32 70 82 67 79 68 69 32 68 82 89 87 76 76 45 74 76 81 54 55 50]}]
 	//{01 - [PID]} {02 - [F] } and so on...
 	return r.rawSeg, nil
 }
@@ -231,22 +231,22 @@ func (r *NonValidatingReader) SegCount() int {
 
 // NewNonValidatingReader creates an instance of NonValidatingReader.
 func NewNonValidatingReader(r io.Reader, decl *FileDecl) *NonValidatingReader {
-	fmt.Println("NewNonValidatingReader starts..")
+	//fmt.Println("NewNonValidatingReader starts..")
 	//changing the header part to key value pair
 	segDelim := newStrPtrByte(&decl.SegDelim)
 	elemDelim := newStrPtrByte(&decl.ElemDelim)
 	compDelim := newStrPtrByte(decl.CompDelim)
 	releaseChar := newStrPtrByte(decl.ReleaseChar)
-	fmt.Println("segDelim", segDelim) //{0xc000fc25f0 [126]} ~
-	fmt.Println("elemDelim", elemDelim)
-	fmt.Println("compDelim", compDelim)
-	fmt.Println("releaseChar", releaseChar)
+	//fmt.Println("segDelim", segDelim) //{0xc000fc25f0 [126]} ~
+	//fmt.Println("elemDelim", elemDelim)
+	//fmt.Println("compDelim", compDelim)
+	//fmt.Println("releaseChar", releaseChar)
 	if decl.IgnoreCRLF {
 		r = ios.NewBytesReplacingReader(r, crBytes, nil)
 		r = ios.NewBytesReplacingReader(r, lfBytes, nil)
 	}
 	scanner := ios.NewScannerByDelim3(r, segDelim.b, releaseChar.b, scannerFlags, make([]byte, ReaderBufSize)) //0xc000cabab0 0x8286a0 65536
-	fmt.Println("Scanner", scanner)
+	//fmt.Println("Scanner", scanner)
 	return &NonValidatingReader{
 		scanner:     scanner,
 		segDelim:    segDelim,

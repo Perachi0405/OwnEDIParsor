@@ -24,8 +24,8 @@ const (
 )
 
 func loadXPathExpr(exprStr string, flags []uint) (*xpath.Expr, error) {
-	fmt.Println("loadxpathExpr exe...")
-	fmt.Println("exprStr loadxpathExpr", exprStr) //exprStr loadxpathExpr REF/ReferenceIdentificatio
+	//fmt.Println("loadxpathExpr exe...")
+	//fmt.Println("exprStr loadxpathExpr", exprStr) //exprStr loadxpathExpr REF/ReferenceIdentificatio
 	var flagsActual uint
 	switch len(flags) {
 	case 0:
@@ -50,7 +50,7 @@ func loadXPathExpr(exprStr string, flags []uint) (*xpath.Expr, error) {
 
 // QueryIter initiates an xpath query specified by 'expr' against an IDR tree rooted at 'n'.
 func QueryIter(n *Node, expr *xpath.Expr) *xpath.NodeIterator {
-	fmt.Println("QueryIter exe..")
+	//fmt.Println("QueryIter exe..")
 	return expr.Select(createNavigator(n))
 }
 
@@ -81,8 +81,8 @@ func MatchAll(n *Node, exprStr string, flags ...uint) ([]*Node, error) {
 // at 'n'. If no matching node is found, ErrNoMatch is returned; if more than one matching nodes are found,
 // ErrMoreThanExpected is returned.
 func MatchSingle(n *Node, exprStr string, flags ...uint) (*Node, error) {
-	fmt.Println("MatchSingle exe..")
-	fmt.Println("exprstr matchSingle", exprStr) //exprstr matchSingle REF/ReferenceIdentification
+	// fmt.Println("MatchSingle exe..")
+	// fmt.Println("exprstr matchSingle", exprStr) //exprstr matchSingle REF/ReferenceIdentification
 	if exprStr == "." {
 		return n, nil
 	}

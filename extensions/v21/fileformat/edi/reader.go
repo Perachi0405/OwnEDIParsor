@@ -48,7 +48,7 @@ func inRange(i, lowerBoundInclusive, upperBoundInclusive int) bool {
 // entry, thus caller can use the pointer and its data values inside locally
 // but should never cache/save it somewhere for later usage.
 func (r *ediReader) stackTop(frame ...int) *stackEntry {
-	fmt.Println("executes stackTop..")
+	//fmt.Println("executes stackTop..")
 	nth := 0
 	if len(frame) == 1 {
 		nth = frame[0]
@@ -56,7 +56,7 @@ func (r *ediReader) stackTop(frame ...int) *stackEntry {
 	if !inRange(nth, 0, len(r.stack)-1) {
 		panic(fmt.Sprintf("frame requested: %d, but stack length: %d", nth, len(r.stack)))
 	}
-	fmt.Println("return stackTop", r.stack[len(r.stack)-nth-1]) //{0xc000afa770 0xc000094300 1 0}
+	//fmt.Println("return stackTop", r.stack[len(r.stack)-nth-1]) //{0xc000afa770 0xc000094300 1 0}
 	return &r.stack[len(r.stack)-nth-1]
 }
 
@@ -65,12 +65,12 @@ func (r *ediReader) stackTop(frame ...int) *stackEntry {
 // use the pointer and its data values inside locally but should never cache/save it somewhere
 // for later usage.
 func (r *ediReader) shrinkStack() *stackEntry {
-	fmt.Println("shrinkstack() exe...")
+	//fmt.Println("shrinkstack() exe...")
 	if len(r.stack) < 1 {
 		panic("stack length is empty")
 	}
 	r.stack = r.stack[:len(r.stack)-1]
-	fmt.Println("shrinkstack()", r.stack)
+	//fmt.Println("shrinkstack()", r.stack)
 	if len(r.stack) < 1 {
 		return nil
 	}
@@ -80,7 +80,7 @@ func (r *ediReader) shrinkStack() *stackEntry {
 // growStack adds a new stack entry to the top of the stack.
 func (r *ediReader) growStack(e stackEntry) {
 	r.stack = append(r.stack, e)
-	fmt.Println("growStack()", r.stack)
+	//fmt.Println("growStack()", r.stack)
 }
 
 func (r *ediReader) resetRawSeg() {
@@ -89,15 +89,15 @@ func (r *ediReader) resetRawSeg() {
 
 func (r *ediReader) getUnprocessedRawSeg() (RawSeg, error) {
 	//here starts processing from the last segments.Take the input file details
-	fmt.Println("getunprocessed executes..")
+	//fmt.Println("getunprocessed executes..")
 	if r.unprocessedRawSeg.valid {
 		return r.unprocessedRawSeg, nil
 	}
 	rawSeg, err := r.r.Read() // here invokes the Read() method with ediReader & nonvalidatingReader it returns the raw segment
 	// fmt.Println("Rawseg getunprocessed", rawSeg)
-	fmt.Println("Rawseg getunprocessed Elems", rawSeg.Elems) //contains the name and its contents in byte array
-	fmt.Println("Rawseg getunprocessed Name", rawSeg.Name)   // name of the input file segment.
-	fmt.Println("Rawseg getunprocessed RAw", string(rawSeg.Raw))
+	//fmt.Println("Rawseg getunprocessed Elems", rawSeg.Elems) //contains the name and its contents in byte array
+	//fmt.Println("Rawseg getunprocessed Name", rawSeg.Name)   // name of the input file segment.
+	//fmt.Println("Rawseg getunprocessed RAw", string(rawSeg.Raw))
 
 	switch {
 	case err == io.EOF:
@@ -107,7 +107,7 @@ func (r *ediReader) getUnprocessedRawSeg() (RawSeg, error) {
 	}
 	r.unprocessedRawSeg = rawSeg
 	r.unprocessedRawSeg.valid = true
-	fmt.Println("UnProcessedRawSegment Read()", r.unprocessedRawSeg)
+	//fmt.Println("UnProcessedRawSegment Read()", r.unprocessedRawSeg)
 	return r.unprocessedRawSeg, nil
 }
 
@@ -142,7 +142,7 @@ func (r *ediReader) rawSegToNode(segDecl *SegDecl) (*idr.Node, error) {
 		return nil, ErrInvalidEDI(
 			r.fmtErrStr("unable to find element '%s' on segment '%s'", elemDecl.Name, segDecl.fqdn))
 	}
-	fmt.Println("rawSegToNode return", n)
+	//fmt.Println("rawSegToNode return", n)
 	return n, nil
 }
 
@@ -153,9 +153,9 @@ func (r *ediReader) rawSegToNode(segDecl *SegDecl) (*idr.Node, error) {
 // action so the current segment will remain on top of the stack and potentially process more instances
 // of this segment. Note: segDone is potentially recursive: segDone -> segNext -> segDone -> ...
 func (r *ediReader) segDone() {
-	fmt.Println("SegDone() executes..")
+	//fmt.Println("SegDone() executes..")
 	cur := r.stackTop()
-	fmt.Println("segdone cur", cur)
+	//fmt.Println("segdone cur", cur)
 	cur.curChild = 0
 	cur.occurred++
 	if cur.segDecl.IsTarget {
@@ -188,9 +188,9 @@ func (r *ediReader) segDone() {
 // If not, it indicates the current segment's parent segment is fully done its processing, thus parent's segDone
 // is called. Note: segNext is potentially recursive: segNext -> segDone -> segNext -> ...
 func (r *ediReader) segNext() error {
-	fmt.Println("segNext() next exe..")
+	//fmt.Println("segNext() next exe..")
 	cur := r.stackTop()
-	fmt.Println("return stcaktop() cur", cur)
+	//fmt.Println("return stcaktop() cur", cur)
 	if cur.occurred < cur.segDecl.minOccurs() {
 		// the current values of [begin, end] cover the current instance of the current seg. But the error
 		// we're about to create is about the missing of next instance of the current seg. So just use
@@ -204,7 +204,7 @@ func (r *ediReader) segNext() error {
 		return nil
 	}
 	cur = r.shrinkStack()
-	fmt.Println("shrinkstack()", cur)
+	//fmt.Println("shrinkstack()", cur)
 	if cur.curChild < len(cur.segDecl.Children)-1 {
 		cur.curChild++
 		r.growStack(stackEntry{segDecl: cur.segDecl.Children[cur.curChild]})
@@ -220,8 +220,8 @@ func (r *ediReader) segNext() error {
 // instance of the current segment decl with the data; if not, we call segNext to move the next segment decl inline, and
 // continue the for-loop so next iteration, the same unprocessed data will be matched against the new segment decl.
 func (r *ediReader) Read() (*idr.Node, error) {
-	fmt.Println("Directs from ingester Read()")
-	fmt.Println("Target", r.target) //nil
+	//fmt.Println("Directs from ingester Read()")
+	//fmt.Println("Target", r.target) //nil
 	if r.target != nil {
 		// This is just in case Release() isn't called by ingester.
 		idr.RemoveAndReleaseTree(r.target)
@@ -232,7 +232,7 @@ func (r *ediReader) Read() (*idr.Node, error) {
 			return r.target, nil
 		}
 		rawSeg, err := r.getUnprocessedRawSeg() //executes 1
-		fmt.Println("rawsegment", rawSeg)       //{01 - [PID]} {02 - [F] }
+		//fmt.Println("rawsegment", rawSeg)       //{01 - [PID]} {02 - [F] }
 		if err == io.EOF {
 			// When the input is done, we still need to verified all the
 			// remaining segs' min occurs are satisfied. We can do so by
@@ -325,16 +325,16 @@ var (
 
 // NewReader creates an FormatReader for EDI file format.
 func NewReader(inputName string, r io.Reader, decl *FileDecl, targetXPath string) (*ediReader, error) {
-	fmt.Println("Reader starts...")
-	fmt.Println("InputName", inputName)     //test-input
-	fmt.Println("targetXpath", targetXPath) //''
+	//fmt.Println("Reader starts...")
+	//fmt.Println("InputName", inputName)     //test-input
+	//fmt.Println("targetXpath", targetXPath) //''
 	targetXPathExpr, err := func() (*xpath.Expr, error) {
 		if targetXPath == "" || targetXPath == "." {
 			return nil, nil
 		}
 		return caches.GetXPathExpr(targetXPath)
 	}()
-	fmt.Println("targetXPathExpr", targetXPathExpr) //nil
+	//fmt.Println("targetXPathExpr", targetXPathExpr) //nil
 	if err != nil {
 		return nil, fmt.Errorf("invalid target xpath '%s', err: %s", targetXPath, err.Error())
 	}
@@ -346,7 +346,7 @@ func NewReader(inputName string, r io.Reader, decl *FileDecl, targetXPath string
 		targetXPath:       targetXPathExpr,
 		unprocessedRawSeg: newRawSeg(),
 	}
-	fmt.Println("result reader", reader) //&{test-input {<nil> []} 0xc00093a0f0 [] <nil> <nil> {false  [] []}}
+	//fmt.Println("result reader", reader) //&{test-input {<nil> []} 0xc00093a0f0 [] <nil> <nil> {false  [] []}}
 	reader.growStack(stackEntry{
 		segDecl: &SegDecl{
 			Name:     rootSegName,
@@ -361,6 +361,6 @@ func NewReader(inputName string, r io.Reader, decl *FileDecl, targetXPath string
 			segDecl: decl.SegDecls[0],
 		})
 	}
-	fmt.Println("Final output reader", reader)
+	//fmt.Println("Final output reader", reader)
 	return reader, nil
 }

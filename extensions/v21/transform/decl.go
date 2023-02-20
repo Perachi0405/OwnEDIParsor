@@ -2,7 +2,6 @@ package transform
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/jf-tech/go-corelib/strs"
 )
@@ -50,7 +49,7 @@ type CustomFuncDecl struct {
 
 // MarshalJSON is the custom JSON marshaler for CustomFuncDecl.
 func (d CustomFuncDecl) MarshalJSON() ([]byte, error) { //log not found
-	fmt.Println("Inside MarshalJSON")
+	//fmt.Println("Inside MarshalJSON")
 	type Alias CustomFuncDecl
 	return json.Marshal(&struct {
 		Alias
@@ -63,7 +62,7 @@ func (d CustomFuncDecl) MarshalJSON() ([]byte, error) { //log not found
 
 // Note only deep-copy all the public fields, those internal computed fields are not copied.
 func (d *CustomFuncDecl) deepCopy() *CustomFuncDecl {
-	fmt.Println("Inside deepCopy")
+	//fmt.Println("Inside deepCopy")
 	dest := &CustomFuncDecl{}
 	dest.Name = d.Name
 	dest.Args = nil
@@ -71,8 +70,8 @@ func (d *CustomFuncDecl) deepCopy() *CustomFuncDecl {
 		dest.Args = append(dest.Args, argDecl.deepCopy())
 	}
 	dest.IgnoreError = d.IgnoreError
-	fmt.Println("DeepCopy Name", dest.Name) //log not found
-	fmt.Println("DeepCopy fqdn", dest.fqdn) //log not found
+	//fmt.Println("DeepCopy Name", dest.Name) //log not found
+	//fmt.Println("DeepCopy fqdn", dest.fqdn) //log not found
 
 	return dest
 }
@@ -114,7 +113,7 @@ type Decl struct {
 
 // MarshalJSON is the custom JSON marshaler for Decl.
 func (d Decl) MarshalJSON() ([]byte, error) {
-	fmt.Println("MarshalJSON()")
+	//fmt.Println("MarshalJSON()")
 	emptyToNil := func(s string) string {
 		return strs.FirstNonBlank(s, "(nil)")
 	}
@@ -135,7 +134,7 @@ func (d Decl) MarshalJSON() ([]byte, error) {
 			for _, child := range d.children {
 				fqdns = append(fqdns, emptyToNil(child.fqdn))
 			}
-			fmt.Println("Children data", fqdns) //empty array
+			//fmt.Println("Children data", fqdns) //empty array
 			return fqdns
 		}(),
 
@@ -149,7 +148,7 @@ func (d Decl) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Decl) resolveKind() {
-	fmt.Println("resolvekind")
+	//fmt.Println("resolvekind")
 	switch {
 	case d.Const != nil:
 		d.kind = kindConst
@@ -171,19 +170,19 @@ func (d *Decl) resolveKind() {
 }
 
 func (d *Decl) isXPathSet() bool {
-	fmt.Println("inside isXPathSet")
+	//fmt.Println("inside isXPathSet")
 	return d.XPath != nil || d.XPathDynamic != nil
 }
 
 // Note only deep-copy all the public fields, those internal computed fields MUST not be copied:
 // see explanation in validate.go's computeDeclHash().
 func (d *Decl) deepCopy() *Decl {
-	fmt.Println("inside Deepcopy")
+	//fmt.Println("inside Deepcopy")
 	dest := &Decl{}
 	dest.Const = strs.CopyStrPtr(d.Const)
-	fmt.Println("dest.Const", dest.Const) //nil
+	//fmt.Println("dest.Const", dest.Const) //nil
 	dest.External = strs.CopyStrPtr(d.External)
-	fmt.Println("dest.External", dest.External) //nil
+	//fmt.Println("dest.External", dest.External) //nil
 	dest.XPath = strs.CopyStrPtr(d.XPath)
 	if d.XPathDynamic != nil {
 		dest.XPathDynamic = d.XPathDynamic.deepCopy()
@@ -208,6 +207,6 @@ func (d *Decl) deepCopy() *Decl {
 	}
 	dest.NoTrim = d.NoTrim
 	dest.KeepEmptyOrNull = d.KeepEmptyOrNull
-	fmt.Println("Full Dest", dest) // mapping the key and value
+	//fmt.Println("Full Dest", dest) // mapping the key and value
 	return dest
 }
